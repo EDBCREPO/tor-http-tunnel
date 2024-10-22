@@ -14,7 +14,7 @@ void resolve_socket_1( http_t& cli ) {
         return; 
     }
 
-    dpx.write_header( cli.method, uri.path, cli.get_version(), cli.headers, 0 );
+    dpx.write_header( cli.method, uri.path, cli.get_version(), cli.headers );
     stream::duplex( dpx, cli );
 }
 
@@ -45,7 +45,7 @@ void resolve_onion_1( http_t& cli ) {
     dpx.write( dip ); dpx.write( ptr_t<char>({ 0x00, prt, 0x00 }) );
     dpx.read();
 
-    dpx.write_header( cli.method, uri.path, cli.get_version(), cli.headers, 0 );
+    dpx.write_header( cli.method, uri.path, cli.get_version(), cli.headers );
     stream::duplex( dpx, cli );
 }
 
